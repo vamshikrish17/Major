@@ -1,0 +1,26 @@
+# VisionExtract 2.0 — Backend Dependencies
+fastapi>=0.115.0
+uvicorn[standard]>=0.34.0
+python-multipart>=0.0.18
+pydantic>=2.10.0
+sqlalchemy>=2.0.0
+aiosqlite>=0.21.0
+aiofiles>=24.0.0
+
+# AI / ML (already installed, listed for completeness)
+torch>=2.0.0
+torchvision>=0.15.0
+ultralytics>=8.0.0
+segment-anything>=1.0
+
+# Image processing
+opencv-python>=4.8.0
+Pillow>=10.0.0
+pillow-heif>=0.20.0
+scikit-image>=0.24.0
+scipy>=1.10.0
+numpy>=1.24.0
+
+# Utilities
+python-jose[cryptography]>=3.4.0
+passlib[bcrypt]>=1.7.0

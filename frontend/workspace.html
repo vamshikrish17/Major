@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionExtract  | AI Visual Intelligence Platform</title>
+    <meta name="description" content="AI-Powered Autonomous Visual Intelligence Platform — Real-time detection, segmentation, and scientific analysis across General, Biological, and Space domains.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-app="workspace">
+    <!-- Animated Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <!-- Main Application -->
+    <div id="app">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="workspace-topbar">
+                <a class="workspace-backlink" href="index.html">← Back to Workspaces</a>
+            </div>
+            <div class="header-inner">
+                <div class="brand">
+                    <div class="brand-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <rect width="32" height="32" rx="8" fill="url(#brandGrad)"/>
+                            <path d="M8 16L12 12L16 16L20 10L24 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="16" cy="20" r="3" fill="white" opacity="0.8"/>
+                            <defs>
+                                <linearGradient id="brandGrad" x1="0" y1="0" x2="32" y2="32">
+                                    <stop stop-color="#6366f1"/>
+                                    <stop offset="1" stop-color="#06b6d4"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h1>Vision<span class="text-gradient">Extract</span> <span class="version-badge"></span></h1>
+                </div>
+                <div class="header-status">
+                    <div class="status-indicator" id="systemStatus">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Connecting...</span>
+                    </div>
+                    <div class="device-badge" id="deviceBadge">CPU</div>
+                </div>
+            </div>
+            <p class="header-subtitle">Autonomous Visual Intelligence Platform — Detection · Segmentation · Scientific Analysis</p>
+        </header>
+
+        <section class="mode-hero glass-card">
+            <div class="mode-hero-grid">
+                <div>
+                    <div class="mode-hero-kicker" id="modeHeroKicker">Dedicated Workspace</div>
+                    <h2 class="mode-hero-title" id="modeHeroTitle">General Vision</h2>
+                    <p class="mode-hero-copy" id="modeHeroCopy">
+                        Explore open-world images with a bold scene-analysis workspace built for flexible uploads and rapid segmentation.
+                    </p>
+                </div>
+                <div class="mode-hero-pillars" id="modeHeroPillars">
+                    <span class="mode-hero-pill">Scene Regions</span>
+                    <span class="mode-hero-pill">Fast Overlay Views</span>
+                    <span class="mode-hero-pill">Downloadable Cutouts</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mode Selector -->
+        <section class="mode-selector" id="modeSelector">
+            <div class="mode-options">
+                <button class="mode-btn active" data-mode="general" id="modeGeneral">
+                    <span class="mode-icon">🔍</span>
+                    <span class="mode-label">General Vision</span>
+                    <span class="mode-desc">Open-world scene analysis</span>
+                </button>
+                <button class="mode-btn" data-mode="bio" id="modeBio">
+                    <span class="mode-icon">🧬</span>
+                    <span class="mode-label">BioVision</span>
+                    <span class="mode-desc">Cell and structure analysis</span>
+                </button>
+                <button class="mode-btn" data-mode="space" id="modeSpace">
+                    <span class="mode-icon">🛰️</span>
+                    <span class="mode-label">Geo-Spatial Analysis</span>
+                    <span class="mode-desc">Terrain and satellite analysis</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Input Section -->
+        <section class="input-section">
+            <div class="input-grid">
+                <!-- File Upload -->
+                <div class="glass-card input-card" id="uploadCard">
+                    <div class="card-icon-header">
+                        <div class="icon-circle">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="17 8 12 3 7 8"/>
+                                <line x1="12" y1="3" x2="12" y2="15"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 id="uploadTitle">Upload for General Vision</h3>
+                            <p class="text-muted" id="uploadSubtitle">PNG, JPG, WEBP, HEIC, TIFF, BMP, AVIF</p>
+                        </div>
+                    </div>
+
+                    <div class="drop-zone" id="dropZone">
+                        <div class="drop-zone-content">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21 15 16 10 5 21"/>
+                            </svg>
+                            <p>Drop image here or <span class="text-accent">browse files</span></p>
+                            <p class="text-xs text-muted">Maximum 100MB</p>
+                        </div>
+                        <input type="file" id="fileInput" accept="image/*,.heic,.heif,.avif,.webp,.tiff,.tif,.bmp" class="file-input-hidden">
+                    </div>
+
+                    <div class="file-preview" id="filePreview" style="display:none;">
+                        <img id="previewImg" alt="Preview">
+                        <div class="file-info">
+                            <span class="file-name" id="fileName"></span>
+                            <button class="btn-icon" onclick="clearFile()" title="Remove file">✕</button>
+                        </div>
+                    </div>
+
+                    <!-- Confidence Slider -->
+                    <div class="slider-group">
+                        <label>Confidence Threshold</label>
+                        <div class="slider-row">
+                            <input type="range" id="confSlider" min="5" max="95" value="35" class="slider">
+                            <span class="slider-value" id="confValue">0.35</span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-glow" id="analyzeBtn" onclick="analyzeImage()">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                        <span id="analyzeBtnText">Analyze in General Vision</span>
+                        <div class="btn-shimmer"></div>
+                    </button>
+                </div>
+
+                <!-- Webcam -->
+                <div class="glass-card input-card" id="webcamCard">
+                    <div class="card-icon-header">
+                        <div class="icon-circle icon-circle-cyan">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                                <circle cx="12" cy="13" r="4"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 id="webcamTitle">General Vision Capture</h3>
+                            <p class="text-muted" id="webcamSubtitle">Real-time scene segmentation</p>
+                        </div>
+                    </div>
+
+                    <div class="webcam-viewport" id="webcamViewport">
+                        <video id="webcamVideo" autoplay playsinline muted></video>
+                        <canvas id="webcamCanvas" style="display:none;"></canvas>
+                        <div class="webcam-placeholder" id="webcamPlaceholder">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3">
+                                <circle cx="12" cy="12" r="10"/>
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M12 2v2M12 20v2M2 12h2M20 12h2"/>
+                            </svg>
+                            <span>Camera Offline</span>
+                        </div>
+                    </div>
+
+                    <div class="webcam-actions">
+                        <button class="btn btn-secondary" onclick="startWebcam()" id="startCamBtn">
+                            <span>Start Camera</span>
+                        </button>
+                        <button class="btn btn-primary" onclick="captureAndAnalyze()" id="captureBtn">
+                            <span id="captureBtnText">Capture for General Vision</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading Overlay -->
+        <section class="loading-section" id="loadingSection" style="display:none;">
+            <div class="glass-card loading-card">
+                <div class="loading-spinner">
+                    <div class="spinner-ring"></div>
+                    <div class="spinner-ring ring-2"></div>
+                    <div class="spinner-ring ring-3"></div>
+                </div>
+                <h3 class="loading-title" id="loadingTitle">Analyzing in General Vision...</h3>
+                <div class="loading-stages" id="loadingStages">
+                    <div class="stage active" id="stageInput">
+                        <span class="stage-dot"></span>
+                        <span>Decoding input</span>
+                    </div>
+                    <div class="stage" id="stageQuality">
+                        <span class="stage-dot"></span>
+                        <span>Image quality scan</span>
+                    </div>
+                    <div class="stage" id="stageDetect">
+                        <span class="stage-dot"></span>
+                        <span>YOLOv8 Detection</span>
+                    </div>
+                    <div class="stage" id="stageSeg">
+                        <span class="stage-dot"></span>
+                        <span>SAM Segmentation</span>
+                    </div>
+                    <div class="stage" id="stageFeatures">
+                        <span class="stage-dot"></span>
+                        <span>Feature Extraction</span>
+                    </div>
+                    <div class="stage" id="stageDomain">
+                        <span class="stage-dot"></span>
+                        <span>Domain Analysis</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection" style="display:none;">
+            <!-- Results Header -->
+            <div class="results-header">
+                <div>
+                    <h2>Analysis Results</h2>
+                    <p class="text-muted" id="resultsSummary"></p>
+                </div>
+                <div class="results-actions">
+                    <span class="timing-badge" id="timingBadge"></span>
+                    <button class="btn btn-outline-danger btn-sm" onclick="clearResults()">Reset</button>
+                </div>
+            </div>
+
+            <!-- Domain Insight Banner -->
+            <div class="insight-banner glass-card" id="insightBanner" style="display:none;">
+                <div class="insight-icon" id="insightIcon">📊</div>
+                <div class="insight-content">
+                    <h4 id="insightTitle">Analysis Insight</h4>
+                    <p id="insightText"></p>
+                </div>
+                <div class="insight-flags" id="insightFlags"></div>
+            </div>
+
+            <!-- Image Comparison -->
+            <div class="comparison-grid" id="comparisonGrid">
+                <div class="glass-card image-card">
+                    <div class="image-card-header">
+                        <h3>Original Input</h3>
+                    </div>
+                    <div class="image-frame">
+                        <img id="originalImage" alt="Original">
+                    </div>
+                </div>
+                <div class="glass-card image-card image-card-primary">
+                    <div class="image-card-header">
+                        <h3>Detected & Segmented</h3>
+                        <a class="btn btn-outline btn-xs" id="downloadOverlay" download>⬇ Download</a>
+                    </div>
+                    <div class="image-frame">
+                        <img id="overlayImage" alt="Segmented">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Panel -->
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card glass-card">
+                    <span class="stat-value" id="statObjects">0</span>
+                    <span class="stat-label">Objects Detected</span>
+                </div>
+                <div class="stat-card glass-card">
+                    <span class="stat-value" id="statCoverage">0%</span>
+                    <span class="stat-label">Area Coverage</span>
+                </div>
+                <div class="stat-card glass-card">
+                    <span class="stat-value" id="statConfidence">0%</span>
+                    <span class="stat-label">Mean Confidence</span>
+                </div>
+                <div class="stat-card glass-card">
+                    <span class="stat-value" id="statTime">0ms</span>
+                    <span class="stat-label">Processing Time</span>
+                </div>
+            </div>
+
+            <!-- Timing Breakdown -->
+            <div class="glass-card timing-card" id="timingCard">
+                <h3>Pipeline Performance</h3>
+                <div class="timing-bars" id="timingBars"></div>
+            </div>
+
+            <div class="glass-card quality-card" id="qualityCard" style="display:none;">
+                <div class="section-header">
+                    <h3>Image Quality Scan</h3>
+                    <p class="text-muted" id="qualitySummary"></p>
+                </div>
+                <div class="quality-issues" id="qualityIssues"></div>
+                <div class="quality-metrics-grid" id="qualityMetrics"></div>
+            </div>
+
+            <!-- Object Details Table -->
+            <div class="glass-card" id="objectsTableCard" style="display:none;">
+                <div class="table-header">
+                    <h3>Object Analysis</h3>
+                    <span class="badge" id="objectCountBadge">0 objects</span>
+                </div>
+                <div class="table-scroll">
+                    <table class="data-table" id="objectsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Label</th>
+                                <th>Confidence</th>
+                                <th>Area (px²)</th>
+                                <th>Perimeter</th>
+                                <th>Shape</th>
+                                <th>Circularity</th>
+                                <th>Solidity</th>
+                                <th>Aspect Ratio</th>
+                            </tr>
+                        </thead>
+                        <tbody id="objectsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Domain-Specific Metrics -->
+            <div class="domain-metrics glass-card" id="domainMetrics" style="display:none;">
+                <h3 id="domainMetricsTitle">Domain Metrics</h3>
+                <div class="metrics-grid" id="metricsGrid"></div>
+            </div>
+
+            <!-- Extracted Segments -->
+            <div class="segments-section" id="segmentsSection" style="display:none;">
+                <div class="section-header">
+                    <h2>Extracted Objects</h2>
+                    <p class="text-muted">Transparent PNG cutouts — click to download</p>
+                </div>
+                <div class="segments-grid" id="segmentsGrid"></div>
+            </div>
+
+            <!-- Analytics Dashboard -->
+            <div class="analytics-section" id="analyticsSection">
+                <h2>Analytics Dashboard</h2>
+                <div class="analytics-grid">
+                    <div class="glass-card chart-card">
+                        <h4>Detection Metrics</h4>
+                        <canvas id="metricsChart" width="400" height="250"></canvas>
+                    </div>
+                    <div class="glass-card chart-card">
+                        <h4>Object Distribution</h4>
+                        <canvas id="distributionChart" width="400" height="250"></canvas>
+                    </div>
+                    <div class="glass-card chart-card">
+                        <h4>Size Distribution</h4>
+                        <canvas id="sizeChart" width="400" height="250"></canvas>
+                    </div>
+                    <div class="glass-card chart-card">
+                        <h4>Pipeline Timing</h4>
+                        <canvas id="timingChart" width="400" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- History Section -->
+        <section class="history-section glass-card" id="historySection">
+            <div class="section-header">
+                <h3>Analysis History</h3>
+                <button class="btn btn-secondary btn-sm" onclick="loadHistory()">Refresh</button>
+            </div>
+            <div class="history-list" id="historyList">
+                <p class="text-muted text-center">No analyses yet — upload an image to get started.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-inner">
+                <p><strong>VisionExtract</strong> — AI-Powered Autonomous Visual Intelligence Platform</p>
+                <p class="text-xs text-muted">YOLOv8 + SAM Hybrid Architecture · Batched Tensor Processing · Multi-Domain Analysis</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

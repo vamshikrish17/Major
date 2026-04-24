@@ -1,0 +1,37 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+venv/
+.venv/
+
+# Build and runtime artifacts
+data/
+static/results/
+static/uploads/
+
+# Datasets and trained outputs
+datasets/
+models/
+
+# Large checkpoints and binaries
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.engine
+
+# Logs and scratch files
+*.log
+scratch_analysis.txt
+
+# IDE
+.vscode/
+.idea/

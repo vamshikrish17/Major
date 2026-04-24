@@ -1,0 +1,92 @@
+VisionExtract Multi-Domain Dataset + Training Workflow
+
+1. Install training dependencies
+./venv/bin/pip install -r training/requirements.txt
+
+2. Download all KaggleHub datasets into separate raw domain folders
+./venv/bin/python training/dataset_pipeline.py --download
+
+Datasets configured in `training/domain_specs.py`
+- Bio: `jeetblahiri/bccd-dataset-with-mask`
+- Space: `sabermalek/spacenetsi`
+- General: `mnavaidd/image-segmentation-dataset`
+
+3. Preprocess and organize data
+./venv/bin/python training/dataset_pipeline.py --preprocess --image-size 640
+
+This creates a clean structure like:
+- `datasets/bio/raw/<dataset_name>/...`
+- `datasets/bio/processed/yolo/images/{train,val,test}`
+- `datasets/bio/processed/yolo/labels/{train,val,test}`
+- `datasets/bio/processed/masks/images/{train,val,test}`
+- `datasets/bio/processed/masks/masks/{train,val,test}`
+- `datasets/general/...`
+- `datasets/space/...`
+
+Preprocessing performed by `training/dataset_pipeline.py`
+- Resizes images to a standard square size
+- Keeps binary masks for segmentation datasets
+- Converts masks to YOLO detection labels
+- Preserves existing YOLO-style `.txt` labels when available
+- Creates deterministic train/val/test splits
+- Writes domain-specific YOLO config files:
+  - `training/configs/general_yolo.yaml`
+  - `training/configs/bio_yolo.yaml`
+  - `training/configs/space_yolo.yaml`
+
+4. Train separate YOLOv8 models per domain
+./venv/bin/python training/train_yolo.py --domain general --model yolov8n.pt --epochs 50 --imgsz 640
+./venv/bin/python training/train_yolo.py --domain bio --model yolov8n.pt --epochs 50 --imgsz 640
+./venv/bin/python training/train_yolo.py --domain space --model yolov8n.pt --epochs 50 --imgsz 640
+
+Or train them all in one pass:
+./venv/bin/python training/train_yolo.py --domain all --model yolov8n.pt --epochs 50 --imgsz 640
+
+Saved checkpoints:
+- `models/general/yolo/best.pt`
+- `models/bio/yolo/best.pt`
+- `models/space/yolo/best.pt`
+
+Metrics saved in each domain folder as `metrics.json`
+- accuracy-like validation summaries from YOLO
+- precision
+- recall
+- IoU / mAP-derived metrics from the trainer
+
+5. Train the biological U-Net segmentation model
+./venv/bin/python training/train_bio_unet.py --epochs 25 --batch-size 8
+
+Saved checkpoint:
+- `models/bio/unet/best.pt`
+
+Saved metrics:
+- `models/bio/unet/metrics.json`
+
+6. Consolidate evaluation outputs
+./venv/bin/python training/evaluate_models.py
+
+Saved summary:
+- `models/evaluation_summary.json`
+
+7. Application integration
+The backend now supports mode-based model selection:
+- General mode -> `models/general/yolo/best.pt`
+- Bio mode -> `models/bio/yolo/best.pt` + `models/bio/unet/best.pt`
+- Space mode -> `models/space/yolo/best.pt`
+
+Inference flow:
+- Upload image
+- Select mode in the frontend dashboard
+- Run domain-specific YOLO detector
+- Run SAM segmentation
+- In Bio mode, refine masks with U-Net when available
+- Return visualizations, extracted masks, metrics, and downloadable results
+
+Main files:
+- `training/dataset_pipeline.py`
+- `training/train_yolo.py`
+- `training/train_bio_unet.py`
+- `training/evaluate_models.py`
+- `backend/services/model_manager.py`
+- `backend/core/segmentation.py`
+- `backend/routers/analysis.py`
