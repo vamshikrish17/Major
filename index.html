@@ -2,16 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=/frontend/index.html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VisionExtract</title>
-    <link rel="canonical" href="/frontend/index.html">
-    <script>
-        window.location.replace("/frontend/index.html");
-    </script>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top, rgba(34, 211, 238, 0.18), transparent 28%),
+                radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.18), transparent 35%),
+                #07111f;
+            color: #f8fafc;
+            font-family: Inter, system-ui, sans-serif;
+        }
+
+        .shell {
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: auto 1fr;
+        }
+
+        .bar {
+            padding: 18px 24px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+            background: rgba(7, 17, 31, 0.88);
+            backdrop-filter: blur(14px);
+        }
+
+        .title {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #7dd3fc;
+        }
+
+        .subtitle {
+            margin: 6px 0 0;
+            color: rgba(226, 232, 240, 0.72);
+            font-size: 0.95rem;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            background: transparent;
+        }
+    </style>
 </head>
 <body>
-    <p>Redirecting to VisionExtract...</p>
-    <p><a href="/frontend/index.html">Open the frontend</a></p>
+    <div class="shell">
+        <header class="bar">
+            <h1 class="title">VisionExtract Workspaces</h1>
+            <p class="subtitle">General Vision, BioVision, and Geo-Spatial Analysis are available as separate pages.</p>
+        </header>
+        <iframe src="/frontend/index.html" title="VisionExtract Workspaces"></iframe>
+    </div>
 </body>
 </html>
