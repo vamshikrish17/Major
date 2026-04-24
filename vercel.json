@@ -1,13 +1,14 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/", "destination": "/frontend/index.html" },
-    { "source": "/index", "destination": "/frontend/index.html" },
-    { "source": "/general-vision", "destination": "/frontend/general-vision.html" },
-    { "source": "/biovision", "destination": "/frontend/biovision.html" },
-    { "source": "/geospatial-analysis", "destination": "/frontend/geospatial-analysis.html" },
-    { "source": "/workspace", "destination": "/frontend/workspace.html" },
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/index", "destination": "/index.html" },
+    { "source": "/general-vision", "destination": "/general-vision.html" },
+    { "source": "/biovision", "destination": "/biovision.html" },
+    { "source": "/geospatial-analysis", "destination": "/geospatial-analysis.html" },
+    { "source": "/workspace", "destination": "/workspace.html" },
     { "source": "/css/:path*", "destination": "/frontend/css/:path*" },
-    { "source": "/js/:path*", "destination": "/frontend/js/:path*" }
+    { "source": "/js/:path*", "destination": "/frontend/js/:path*" },
+    { "source": "/frontend/:path*", "destination": "/frontend/:path*" }
   ]
 }
